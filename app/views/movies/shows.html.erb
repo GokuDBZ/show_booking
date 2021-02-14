@@ -1,0 +1,36 @@
+  
+ <h2> Show for <%= @shows.first.movie.name%></h2>
+ <hr>
+ <div class="shows">
+   <% @shows.each do |show|%>
+	    <div class="row movie_row">
+		    <div class="col-lg-3 movies">
+		       <%= link_to show_seats_show_path(show) do %>
+		         <div class="card my-card">
+					<div class="card-body">
+					    <h5 class="card-title movie_name"> <%= show.movie.name %></h5>
+						<p class="card-text genre"> Genre: <%= show.movie.genre %></p>
+						<div class="row">
+							<div class="col-sm-6">
+								Time : <%= show.timing%>
+							</div>
+							<div class="col-sm-6">
+								Seats Available :  <%= show.seats_left%>
+							</div>	
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-md-3"> Cinema:</div>
+							<div class="col=md-3"> <%= show.cinema.name%></div>
+						</div>
+
+				</div>
+			</div>
+		       <% end%>	  
+				
+			</div>
+		</div>	
+	<%end%>
+
+ </div>
+  

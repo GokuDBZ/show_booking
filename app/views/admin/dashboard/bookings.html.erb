@@ -1,0 +1,88 @@
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<div class="row">
+	<div class="col-md-3"></div>
+	<div class="col-md-6">
+	</div>
+	<div class="col-md-3"></div>
+</div>
+
+
+
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-6">
+		<span class="dashboard"> Dashboard</span>
+	</div>
+	<div class="col-md-3"></div>
+</div>
+
+<div class="date_time">
+	<div class="row">
+		<div class="col-md-3">
+			<span> Search By Date</span>
+		</div>
+		<div class="col-md-3">
+			<p>Date: <input type="text" id="datepicker"></p>
+		</div>
+		<div class="col-md-3">
+			<button type="button" class="btn btn-primary search_button">Search</button>
+		</div>
+
+	</div>
+	
+</div>
+
+
+<div class="order">
+	<div class="row">
+		<div class="col-md-3 col_border"> Booking </div>
+		<div class="col-md-2 col_border"> Movie </div>
+		<div class="col-md-2 col_border"> Time </div>
+		<div class="col-md-2 col_border">Cinema </div>
+		<div class="col-md-2 col_border">Seats </div>
+		<div class="col-md-1 col_border">Amount Paid</div>
+	</div>
+
+	<% if @orders.present? %>
+  <% @orders.each do |order|%>
+  <div class=row>
+
+     <div class="col-md-3 col_border"> <span><%= order.booking_number%></span> </div>
+		<div class="col-md-2 col_border"> <%= order.show.movie.name %></div>
+		<div class="col-md-2 col_border"> <%= order.show.timing%> </div>
+		<div class="col-md-2 col_border"> <%= order.show.cinema.name%> </div>
+		<div class="col-md-2 col_border"> <%= order.tickets.map(&:seat_info).map(&:capitalize).join(",")%> </div>
+		<div class="col-md-1 col_border"><%= order.amount_paid%></div>
+	</div>
+  <%end%>
+<%else%>
+  <h1> No order present for date <%= @date%>
+<%end%>
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+	$(document).ready(function(){
+
+	$( "#datepicker" ).datepicker();
+
+	$(".search_button").click(function(e){
+		e.preventDefault();
+		var date = $("#datepicker").val();
+		if(date == undefined || date == ""){
+			alert("Please select date");
+			return
+		}
+		else{
+			date = new Date(date)
+			date = date.getDate().toString() + "/" + (date.getMonth() + 1).toString() + "/" + date.getFullYear().toString()
+			window.location.href = window.location.origin + "/admin/dashboard" +"?date=" + date
+		}
+	})
+})
+	</script>

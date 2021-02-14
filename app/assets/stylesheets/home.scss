@@ -1,0 +1,45 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+.movies {
+	text-decoration: none;
+	font-weight: bold;
+	font-sixe: 30px;
+}
+
+.movie_name {
+	color: black;
+}
+
+.genre {
+	color: cyan;
+}
+
+.movie_row {
+	margin-top: 10px;
+}
+
+.movie_page {
+	height: auto;
+	width: 70%;
+}
+.app_name {
+	font-size: 15px;
+	background-color: antiquewhite;
+	font-weight: bold;
+	font-family: verdana;
+	border-radius: 5%;
+}
+.web-name{
+	font-size: 30px;
+	font-weight: bold;
+	background-color: #D3D3D3;
+	font-family: sans-serif;
+	border-radius: 2%;
+}

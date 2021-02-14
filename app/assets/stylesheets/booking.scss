@@ -1,0 +1,41 @@
+// Place all the styles related to the Booking controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.booking_screen {
+	width: 50%;
+	height: 40%;
+	margin-top: 40px;
+	margin-left: 10px;
+	background-color: #dee2e6;
+	dispaly: flex;
+	border-shadow: 1px;
+	border-radius: 10px;
+}
+
+.heading{
+  font-size: 30px;
+  font-wight: bold;
+  color: black;
+  font-family: verdana;
+}
+.booking_id, .time, .ticket_heading{
+  font-size: 20px;
+  color: black;
+  font-family: verdana;
+}
+
+.booking_number, .time_value{
+  font-size: 15px;
+
+  color: #007bff;
+  font-family: verdana;
+}
+
+.info {
+	font-size: 20px;
+	background-color: white;
+	border-radius: 10%;
+}
+

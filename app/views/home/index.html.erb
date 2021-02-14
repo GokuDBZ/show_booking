@@ -1,0 +1,17 @@
+	
+<div class="movie_page">
+	<% @movies.each do |movie|%>
+	    <div class="row movie_row">
+		    <div class="col-lg-3 movies">
+		        <%= link_to show_path(movie_id: movie.id) do %>		  
+					<div class="card my-card">
+						<div class="card-body">
+						    <h5 class="card-title movie_name"> <%= movie.name %></h5>
+							<p class="card-text genre"> Genre: <%= movie.genre %></p>
+						</div>
+					</div>
+				<%end%>
+			</div>
+		</div>	
+	<%end%>
+</div>

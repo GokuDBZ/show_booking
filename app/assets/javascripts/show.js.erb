@@ -1,0 +1,102 @@
+
+$(document).ready(function(){
+  $(".open_seat").on("click", function(event){
+     
+ 	   if($(this).hasClass("selected")){
+         $(this).removeClass("selected");
+         decrementPrice(this)
+ 	   }
+ 	   else{
+ 	   	$(this).addClass("selected")
+      calculatePrice(this);
+ 	   }
+ 	})
+
+  $(".booking").on("click", function(event){
+     event.preventDefault();
+     var length = $(".selected").length;
+     var selected_seats = []
+     if(length > 0){
+     	while(length > 0){
+     		var index = length - 1;
+     		selected_seats.push($(".selected")[index].id);
+     		length = length - 1;
+     	}
+     	console.log("sending request");
+     	sendBookingRequest(selected_seats, show_id)
+     }
+     else {
+     	alert("Please select seats");
+     }
+  })
+
+  function sendBookingRequest(seats){
+  	$.ajax({
+  		type: "post",
+  		url: "/bookings",
+  		data: {requested_seats: seats, show_id: $("#show_id").val()},
+  		beforeSend: function(){
+  		  $.blockUI({ message: '<h1> Booking in Progress...</h1>' });
+  		},
+  		error: function(data){
+  			$.unblockUI()
+        alert(data.message[0].message);
+  		},
+  		success: function(data){
+  			if(data.booking_id){
+  				window.location.href = window.location.origin + "/bookings/" + data.booking_id 
+  			}
+
+  		}
+  	})
+  }
+
+  function calculatePrice(tag){
+    const PRICE_MAPPING = <%= Ticket::PRICE_MAPPING.to_json%>
+    var amount = $("#amount").val();
+    if(amount == "" || amount == undefined){
+      $("#amount").val(PRICE_MAPPING[tag.id])
+    }
+    else{
+      var existingPrice = $("#amount").val()
+      var newPrice = parseInt(existingPrice) + parseInt(PRICE_MAPPING[tag.id])
+      $("#amount").val(newPrice);
+    }
+  }
+
+  function decrementPrice(tag){
+    const PRICE_MAPPING = <%= Ticket::PRICE_MAPPING.to_json%>
+    if(amount == "" || amount == undefined){
+      $("#amount").val("")
+    }
+    else{
+      var existingPrice = $("#amount").val()
+      var newPrice = parseInt(existingPrice) - parseInt(PRICE_MAPPING[tag.id])
+      $("#amount").val(newPrice);
+    }
+  }
+
+  function confirmBooking(){
+    var index = 0;
+    seats = ""
+    if($(".selected").length == 0){
+      alert("Please select seats");
+      return
+    }
+    while(index < $(".selected").length){
+      var seat_name = $($(".selected")[index]).html().toString().trim();
+      debugger
+      seats += seat_name + " " 
+      index+=1;
+    }
+    //var seats = $(".selected").map(function(tag){ return $(tag).html().trim()}).join(",")
+    $("#seat_info").html(seats);
+    $("#modal-amount").html($("#amount").val())
+    
+  }
+
+  $(".confrim_button").click(function(){
+    confirmBooking()
+    $("#modal-button").click();
+  })
+})

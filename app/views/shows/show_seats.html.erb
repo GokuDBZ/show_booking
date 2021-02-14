@@ -1,0 +1,110 @@
+
+
+  
+ <h2> Show for <%= @show.movie.name%></h2>
+<div class="row movie_row">
+    <div class="col-lg-3 movies">
+       <%= hidden_field_tag 'show_id', @show.id  %>	
+       <%= link_to show_seats_show_path(@show) do %>
+         <div class="card my-card">
+			<div class="card-body">
+			    <h5 class="card-title movie_name"> <%= @show.movie.name %></h5>
+				<p class="card-text genre"> Genre: <%= @show.movie.genre %></p>
+				<div class="row">
+					<div class="col-sm-6">
+						Time : <%= @show.timing%>
+					</div>
+					<div class="col-sm-6">
+						Seats Available :  <%= @show.seats_left%>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3"> Cinema:</div>
+					<div class="col=md-3"> <%= @show.cinema.name%></div>
+				</div>		
+			</div>
+		</div>
+       <% end%>	
+	</div>
+</div>	
+<hr>
+<div class="row">
+    <div class="col-md-3">
+ 	</div>	
+	 <div class="seats shadow p-1 mb-1">
+ 		<%Ticket.seat_infos.symbolize_keys.keys.in_groups_of(5).each do |seats|%>
+ 		   <div class="row">
+ 		   	  <%seats.each do |seat|%>
+ 		   	    <div class="col-sm-2">
+                   <%_class = @seat_mapping[seat][:status] == 1 ? 'disabled' : 'open_seat'%>
+                   <% _id  = @seat_mapping[seat][:value] %>
+                   <span class="make-round shadow p-1 mb-1 <%=  _class %>" id="<%= _id %>">
+                   		<%= seat.to_s.capitalize %>
+                   </span>
+                </div>
+ 		   	  <%end%>
+ 		   	  <% row = seats.first.to_s.chars[0]%>
+					<span class="price-round">
+                   		Rs <%=  Ticket::PRICE_MAPPING[Ticket.seat_infos[seats.first]]%>
+                   	</span>
+ 		   	</div>  
+        <%end%>
+	 </div>
+	 <div class="col-md-3">
+	 	<div class="row">
+	 		<div class="col-md-4">
+	 			<span class="text-total-price">Price: 
+	 		</div>
+	 		<div class="col-md-3">
+	 			<span class="price"><input type="text" id="amount" readonly></input></span>
+	 		</div>
+	 	</div>
+	 </div>
+</div>
+
+<div class="row">
+	<div class="col-md-3"></div>
+	<div class="col-md-5">
+		<div class="screen shadow p-1 mb-1 rounded"></div>
+ 	</div>
+ 	<div class="col-md-4">
+ 		
+ 	</div>
+	
+</div>
+
+ <div class="row">
+ 	<div class="col-md-4">
+ 	</div>
+
+ 	<div class="col-md-3">
+ 		<button type="button" class="btn btn-primary confrim_button booking_button">Book Tickets</button>
+ 	</div>
+ </div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Confirm Booking</h4>
+      </div>
+      <div class="modal-body">
+        <p > You have selected seat </p>
+        <span id="seat_info"> </span>
+        <br>
+        <span> which amounts to </span>
+        <span id="modal-amount"></span>
+      </div>
+
+      <div class="modal-footer">
+      	<button type="button" class="btn btn-primary booking">Book Tickets</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+      </div>
+    </div>
+
+  </div>
+</div> 
+
+
+  

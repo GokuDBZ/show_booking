@@ -1,0 +1,44 @@
+<div class="booking_screen">
+	<div class="row">
+		<div class="col-md-4"></div>
+		<div class="col-md-3"><p class="heading">Booking</p></h2></div>
+		<div class="col-md-3"></div>
+	</div>
+	<hr>
+
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-4"> 
+			<span class="booking_id">Booking Id: </span>
+			<span class="booking_number">
+				<%= @booking.booking_number%>
+			</span>
+		  </div>
+		<div class="col-md-4"> 
+			<span class="time">Time: </span> 
+			<span class="time_value"><%= @booking.show.timing%></span>
+		</div>
+	</div>	
+	<br>
+	<div class="row">
+		<div class="col-md-1">
+		</div>
+		<div class="col-md-2">
+			<span class="ticket_heading">Seats:
+			</span>
+		</div>
+		<div class="col-md-6">
+			<%@booking.tickets.each do |ticket|%>
+			  <span class="info">
+			    <%= ticket.seat_info.capitalize%>   	
+			  </span>
+			<%end%>
+		</div>
+		<div class="col-md-3">
+			<span> Amount Paid: Rs</span>
+			<span >
+			    <%= @booking.amount_paid%>   	
+			</span>
+		</div>
+	</div>
+</div>
