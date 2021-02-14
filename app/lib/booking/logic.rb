@@ -57,7 +57,6 @@ module Booking
       seats = @demanded_seats.map(&:to_s)
       
       seats.each do |seat|
-        byebug
         self.amount_paid += Ticket::PRICE_MAPPING[Ticket.seat_infos[seat]]
       end
     end
