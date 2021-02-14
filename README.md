@@ -9,29 +9,29 @@
  * rspec spec/
 
 * Database -
-  # Sqlite on local
-  # PgSQL on prodcution
+  ### Sqlite on local
+  ### PgSQL on prodcution
 
 * Run Migrations
-  # rake db:migrate
+  ### rake db:migrate
 
 * Seed Databse
- # rake db:seed
+ ### rake db:seed
 
 * Run Server
- #  rails s
+ ###  rails s
 
-# Authnetication is being done using devise with no customization
+## Authnetication is being done using devise with no customization
 
-# localhost:3000 or https://booking-show.herokuapp.com/ will bring you to Sign UP page
+## localhost:3000 or https://booking-show.herokuapp.com/ will bring you to Sign UP page
 
-# After sign up , user will be redirected to movies page where user can see which movies are active.
+## After sign up , user will be redirected to movies page where user can see which movies are active.
 
-# Once user click on any movie they will get to know shows of movies with their corresponding cinema and show times.
+## Once user click on any movie they will get to know shows of movies with their corresponding cinema and show times.
 
-# After selecting particular show, user will be able to select seats of theri choice.
+## After selecting particular show, user will be able to select seats of theri choice.
 
-# Once seats are chosen , user can click on book seats button to place the order.
+## Once seats are chosen , user can click on book seats button to place the order.
 
-# In last user will see the order details.
+## In last user will see the order details.
 
