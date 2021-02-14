@@ -52,7 +52,7 @@ $(document).ready(function(){
   }
 
   function calculatePrice(tag){
-    const PRICE_MAPPING = <%= Ticket::PRICE_MAPPING.to_json%>
+    var PRICE_MAPPING = <%= Ticket::PRICE_MAPPING.to_json%>
     var amount = $("#amount").val();
     if(amount == "" || amount == undefined){
       $("#amount").val(PRICE_MAPPING[tag.id])
@@ -65,7 +65,7 @@ $(document).ready(function(){
   }
 
   function decrementPrice(tag){
-    const PRICE_MAPPING = <%= Ticket::PRICE_MAPPING.to_json%>
+    var PRICE_MAPPING = <%= Ticket::PRICE_MAPPING.to_json%>
     if(amount == "" || amount == undefined){
       $("#amount").val("")
     }
