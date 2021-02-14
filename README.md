@@ -1,24 +1,37 @@
-# README
+# MY MOVIES
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## MY MOVIES is a prototype of movie ticketing system like bookmyshow.
 
-Things you may want to cover:
+## Ruby version : 2.5.8
+## Rails version: 5.2.1
 
-* Ruby version
+## Used RSpec for writing unit test cases.
+ * rspec spec/
 
-* System dependencies
+* Database -
+  # Sqlite on local
+  # PgSQL on prodcution
 
-* Configuration
+* Run Migrations
+  # rake db:migrate
 
-* Database creation
+* Seed Databse
+ # rake db:seed
 
-* Database initialization
+* Run Server
+ #  rails s
 
-* How to run the test suite
+# Authnetication is being done using devise with no customization
 
-* Services (job queues, cache servers, search engines, etc.)
+# localhost:3000 or https://booking-show.herokuapp.com/ will bring you to Sign UP page
 
-* Deployment instructions
+# After sign up , user will be redirected to movies page where user can see which movies are active.
 
-* ...
+# Once user click on any movie they will get to know shows of movies with their corresponding cinema and show times.
+
+# After selecting particular show, user will be able to select seats of theri choice.
+
+# Once seats are chosen , user can click on book seats button to place the order.
+
+# In last user will see the order details.
+
