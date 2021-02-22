@@ -27,7 +27,7 @@
    end
 
 
-   Show.create(movie: Movie.first, cinema: Cinema.first, screen: Screen.first, timing: Show.timings.first)
+   Show.create(movie: Movie.first, cinema: Cinema.first, screen: Screen.first, timing: 0)
    Show.create(movie: Movie.second, cinema: Cinema.first, screen: Screen.second, timing: 1)
    
    movies = Movie.all.reverse

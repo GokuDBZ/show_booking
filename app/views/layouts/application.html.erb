@@ -13,14 +13,23 @@
     <header>
       <div class="row app_name">
         <div class = col-lg-6>
-          <span class="shadow p-1 mb-1 float-right web-name">My Movies</span>
+          <%= link_to "My Movies", root_path, :class => "shadow p-1 mb-1 float-right web-name", style: "text-decoration: none"%>
         </div>
         <div class = col-lg-6>
-          <p class="navbar-text float-right">
+          <div class="row float-right">
             <% if user_signed_in? %>
+             <div class="col-md-6">
               Logged in as <strong><%= current_user.email %></strong>.
-              <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-              <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+            </div>
+            <div class="col-md-3">
+              <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %>
+             </div>
+             <div class="col-md-3">
+              <%= button_to "Logout", destroy_user_session_path, method: :delete , :class => "btn btn-primary" %>
+             </div> 
+              
+              <!-- link_to does not work always it requires jqiery and UJS which  jQuery + UJS scripts into a form submission on the client side: -->                 
+              <!--<%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %> -->
             <% else %>
               <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
             <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
