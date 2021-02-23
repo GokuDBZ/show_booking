@@ -1,6 +1,7 @@
 class BookingsController < ApplicationController
 	skip_before_action :verify_authenticity_token
     #before_action :validate_request, only: [:create]
+    authorize_resource "Order", only: [:show]
 
 
     def index
@@ -8,6 +9,7 @@ class BookingsController < ApplicationController
 
     def show
     	@booking = Order.find(params[:id])
+    	authorize!(:show, @booking)
     end
 
 	def create
